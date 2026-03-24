@@ -1,0 +1,172 @@
+@charset "UTF-8";
+
+/* 自己紹介カードの大枠: ngo-frame の設定に、カード専用の設定を重ねます */
+.profile-card {
+  background-color: var(--card-bg);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* ★ヘッダー画像とアイコン */
+.header-banner {
+  height: 130px;
+  background: linear-gradient(135deg, #F2B9C7 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.icon-wrapper {
+  text-align: left;
+  padding-left: 20px; /* 左端から少し余白を取る */
+  margin-top: -55px;
+}
+
+.profile-icon {
+  width: 110px;
+  height: 110px;
+  background-color: var(--bg-base);
+  background-image: url('../images/icon.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  border: 4px solid var(--card-bg);
+  display: inline-block;
+}
+
+/* テキスト情報 */
+.profile-info {
+  padding: 15px 25px 30px;
+}
+
+.name {
+  color: #D48C9A; /* ダスティピンク（赤みのあるくすんだピンク） */
+  text-align: center;
+  width: 100%;
+}
+
+.bio-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  line-height: 1.8;
+}
+
+.bio-list li {
+  display: flex;
+  align-items: center;
+}
+
+.bio-text {
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ★リボンアイコン（実際の絵文字🎀を使用しピンク単色化） */
+.icon-ribbon {
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.icon-ribbon::before {
+  content: "🎀";
+  /* お客様ご指定の絵文字 */
+  font-size: 1.2rem;
+  /* 絵文字本来のカラーリングを、フィルターで強引にピンク単色に変換 */
+  filter: sepia(100%) hue-rotate(290deg) saturate(500%) brightness(1.2);
+}
+
+/* ★EDPS用十字架アイコン */
+.icon-edps-cross {
+  position: relative;
+  width: 16px;
+  height: 20px;
+  margin-right: 12px;
+}
+
+.icon-edps-cross::before,
+.icon-edps-cross::after {
+  content: "";
+  position: absolute;
+  background-color: var(--blue-neon);
+  border-radius: 2px;
+  box-shadow: 0 0 6px var(--blue-neon);
+}
+
+.icon-edps-cross::before {
+  width: 4px;
+  height: 20px;
+  left: 6px;
+}
+
+.icon-edps-cross::after {
+  width: 16px;
+  height: 4px;
+  top: 6px;
+  left: 0;
+}
+
+/* 🔗 XとInstagramの実際のスマホアイコン風リンク */
+.links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  /* アイコンのみのため丸くする */
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  padding: 0;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.link-item svg {
+  fill: var(--text-soft);
+  /* アイコンの色をテーマの水色に */
+}
+
+/* X 用ボタン */
+.link-x {
+  background-color: rgba(0, 255, 255, 0.1);
+  border: 1px solid var(--blue-neon);
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+.link-x:hover {
+  background-color: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+/* Instagram 用ボタン */
+.link-instagram {
+  background-color: rgba(255, 0, 127, 0.1);
+  border: 1px solid var(--pink-vivid);
+  box-shadow: 0 0 5px rgba(255, 0, 127, 0.3);
+  background-image: none;
+}
+
+.link-instagram:hover {
+  background-color: rgba(255, 0, 127, 0.2);
+  box-shadow: 0 0 10px rgba(255, 0, 127, 0.8);
+  opacity: 1;
+}
+
+/* サイト 用ボタン */
+.link-website {
+  background-color: rgba(0, 255, 255, 0.1);
+  border: 1px solid var(--blue-neon);
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+  color: var(--blue-neon);
+}
+
+.link-website:hover {
+  background-color: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+  color: #fff;
+}
