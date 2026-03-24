@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+/* ==========================================
+   CSSをまとめるエリア（ここに追加していく）
+   ========================================== */
+@import url("frame.css");   /* NEEDY GIRL風枠線用のCSS */
+@import url("profile.css"); /* 自己紹介用のCSS */
+/* @import url("works.css"); */  /* 制作物用のCSS（後で作る） */
+@import url("works.css");
+/* @import url("button.css"); */ /* ほめほめボタン用のCSS（後で作る） */
+@import url("button.css");
+
+
+/* ==========================================
+   全体の共通ルール（カラーパレットと背景）
+   ========================================== */
+:root {
+  /* 基本色 */
+  --bg-base: #101012;       /* 背景（より深い黒） */
+  --card-bg: #28282e;       /* カード背景 */
+  --text-soft: #AFEFEF;     /* 文字（水色） */
+  --pink-fluffy: #F2B9C7;   /* 装飾（ピンク） */
+  --red-sharp: #C82A45;     /* 尖った装飾（赤） */
+  --shadow-dark: #070708;   /* 影 */
+
+  /* ★新規：NEEDY GIRL OVERDOSE風ネオンカラー */
+  --pink-vivid: #FF007F;     /* より濃いピンク */
+  --blue-neon: #00FFFF;       /* 青いネオン */
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-soft);
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+
+  /* ★全体の背景に、走査線とピンクと水色の微細パターン（静止）を追加 */
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.2) 2px, rgba(0, 0, 0, 0.2) 4px),
+    linear-gradient(45deg, rgba(255, 0, 127, 0.05) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0, 255, 255, 0.05) 25%, transparent 25%);
+  background-size: 100% 4px, 8px 8px, 8px 8px;
+}
+
+/* ==========================================
+   ランダムに散発する極細ショートグリッチライン
+   ========================================== */
+@keyframes scatteredGlitches {
+  0%   { opacity: 0; background-position: 10% 20%, 80% 80%, 40% 50%, 60% 10%; }
+  3%   { opacity: 1; background-position: 15% 15%, 75% 85%, 35% 55%, 65% 5%; }
+  5%   { opacity: 0; background-position: 10% 20%, 80% 80%, 40% 50%, 60% 10%; }
+  
+  45%  { opacity: 0; background-position: 30% 90%, 50% 30%, 20% 70%, 90% 40%; }
+  47%  { opacity: 1; background-position: 25% 95%, 55% 25%, 25% 65%, 85% 45%; }
+  49%  { opacity: 0; background-position: 30% 90%, 50% 30%, 20% 70%, 90% 40%; }
+  
+  75%  { opacity: 0; background-position: 60% 70%, 20% 10%, 80% 40%, 40% 90%; }
+  76%  { opacity: 1; background-position: 65% 65%, 15% 15%, 85% 35%, 45% 85%; }
+  78%  { opacity: 0; background-position: 60% 70%, 20% 10%, 80% 40%, 40% 90%; }
+  
+  100% { opacity: 0; }
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 9999; /* すべての上に被せる */
+  
+  /* 複数の短い線（背景色つきの領域として描画） */
+  background-image: 
+    linear-gradient(90deg, transparent, rgba(255, 0, 255, 0.8), transparent), /* マゼンタ */
+    linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.8), transparent), /* シアン */
+    linear-gradient(90deg, transparent, rgba(128, 0, 255, 0.8), transparent), /* パープル */
+    linear-gradient(90deg, transparent, rgba(255, 0, 128, 0.8), transparent); /* ピンク */
+    
+  background-size: 
+    150px 4px,
+    100px 3px,
+    200px 5px,
+    120px 4px;
+    
+  background-repeat: no-repeat;
+  mix-blend-mode: screen; /* もしくは hard-light で明るく被せる */
+  
+  animation: scatteredGlitches 4s infinite steps(2);
+}
+
+/* ==========================================
+   ゴスロリ風 レース装飾（左右の余白）
+   ========================================== */
+.bg-lace {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 140px; /* 少し幅を広げて刺繍を見せる */
+  pointer-events: none;
+  z-index: 0; /* メインコンテンツの後ろ */
+  
+  /* 新しく作成した十字架とリボンの精密なレース画像を参照 */
+  background-image: url('../images/lace.svg');
+  background-repeat: repeat-y;
+  /* 画像本来の縦横比（240:480）を保ったまま横幅いっぱいに表示し、潰れるのを防ぐ */
+  background-size: 100% auto; 
+}
+
+/* 左側のレース */
+.lace-left {
+  left: 0;
+  background-position: left top;
+}
+
+/* 右側のレース */
+.lace-right {
+  right: 0;
+  /* 左右反転させて右端にピッタリ沿わせる */
+  transform: scaleX(-1);
+  transform-origin: center top; 
+}
+
+/* 画面が狭い場合（スマホ等）は背景を消すか薄くしてコンテンツ領域を確保 */
+@media (max-width: 768px) {
+  .bg-lace {
+    opacity: 0.3;
+    width: 60px;
+  }
+}

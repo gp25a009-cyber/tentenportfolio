@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+/* ==========================================
+   制作物ギャラリー (Works)
+   ========================================== */
+.works-section {
+  width: 100%;
+  max-width: 780px; /* 枠を小さくするため全体の幅を縮小 */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; /* 隙間も少しコンパクトに */
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 850px) {
+  .works-section { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 550px) {
+  .works-section { grid-template-columns: 1fr; }
+}
+
+.work-card-img {
+  width: 100%;
+  height: 130px; /* 画像も小さくする */
+  object-fit: contain;
+  margin-bottom: 12px;
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 4px;
+}
+
+.work-card {
+  text-align: center;
+  transition: transform 0.2s ease;
+  padding: 0; /* Padding is handled by ngo-frame-inner spacing + inner element if we want */
+}
+
+.work-card .ngo-frame-inner {
+  padding: 20px;
+}
+
+.work-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 0 15px rgba(255, 0, 127, 0.8),
+    0 0 30px rgba(0, 255, 255, 0.6);
+}
+
+.work-title {
+  color: var(--text-soft);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.work-desc {
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+/* ==========================================
+   作品ギャラリー ヘッダー (CREATE & INVOLVED)
+   ========================================== */
+.works-header-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto 10px;
+  text-align: center;
+}
+
+/* ただの装飾見出しに戻したためホバーエフェクト削除 */
+.works-main-title {
+  display: inline-block;
+}
+
+.works-main-title h2 {
+  font-size: 4rem; /* 筆記体は細いため大きくする */
+  font-family: 'Pinyon Script', cursive; /* エレガントな筆記体フォント */
+  color: #fff0f5; /* インクとネオンの間のようなくすんだ白ピンク */
+  margin: 0;
+  font-weight: normal; /* 筆記体の繊細さを活かす */
+  letter-spacing: 1px;
+  /* 滲んだインク＋ネオン発光のハイブリッドエフェクト */
+  text-shadow: 
+    0 0 5px rgba(255, 105, 180, 0.8),   /* 芯のピンク */
+    0 0 15px rgba(255, 0, 127, 0.6),    /* ぼんやりした光 */
+    2px 2px 2px rgba(0, 0, 0, 0.8);     /* 少しの物理的なインクの影 */
+}
+
+.works-main-title .works-sub-title {
+  font-size: 0.9rem;
+  color: var(--blue-neon);
+  margin-top: 5px;
+  letter-spacing: 2px;
+  opacity: 0.9;
+}
+
+/* リンクとして機能する場合（index.html）のみホバーアクションを有効化 */
+a.works-main-title {
+  text-decoration: none;
+  transition: transform 0.2s ease, text-shadow 0.2s ease;
+}
+
+a.works-main-title:hover {
+  transform: scale(1.05);
+}
+
+a.works-main-title:hover h2 {
+  color: #fff;
+  text-shadow: 
+    0 0 10px rgba(255, 105, 180, 1),
+    0 0 20px rgba(255, 0, 127, 0.8),
+    0 0 35px var(--blue-neon);
+}
+
+/* 作品カードを包むリンク用ラッパー */
+.work-link-wrapper {
+  text-decoration: none;
+  display: block;
+}
+
+.work-link-wrapper .work-card {
+  height: 100%; /* 高さ揃え */
+}
+
+/* リンクホバー時のカード全体の強調 */
+.work-link-wrapper:hover .work-card {
+  transform: translateY(-8px);
+  box-shadow: 
+    0 0 20px rgba(255, 0, 127, 1),
+    0 0 40px rgba(0, 255, 255, 0.8),
+    inset 0 0 15px rgba(255, 0, 127, 0.3);
+  border-color: var(--pink-vivid); /* 枠線自体も光らせる */
+}
+
